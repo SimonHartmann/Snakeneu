@@ -14,8 +14,6 @@ namespace WinSnake
     {
         Spiel sp;
         Gitter git;
-        //int intKastenX;
-        //int intKastenY;
         int intBoxSize = 15;
         int intTmerCounter;
         int intRichtung;
@@ -30,6 +28,7 @@ namespace WinSnake
             InitializeComponent();
             sp = new Spiel();
             git = new Gitter();
+            pbSpielfeld.BackColor = Color.White;
            
         }
 
