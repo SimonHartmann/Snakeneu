@@ -13,7 +13,6 @@ namespace WinSnake
         Random rnd = new Random(DateTime.Now.Millisecond);
 
         public int intZufallFarbe;
-        Brush farbe;
 
 
         public Zufall(int intMinimum, int intMaximum)

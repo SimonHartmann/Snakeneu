@@ -33,6 +33,8 @@
             this.cmdStart = new System.Windows.Forms.Button();
             this.cmdReset = new System.Windows.Forms.Button();
             this.timerTick = new System.Windows.Forms.Timer(this.components);
+            this.lblTextScore = new System.Windows.Forms.Label();
+            this.lblScore = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pbSpielfeld)).BeginInit();
             this.SuspendLayout();
             // 
@@ -68,11 +70,30 @@
             // 
             this.timerTick.Tick += new System.EventHandler(this.timerTick_Tick);
             // 
+            // lblTextScore
+            // 
+            this.lblTextScore.AutoSize = true;
+            this.lblTextScore.Location = new System.Drawing.Point(473, 22);
+            this.lblTextScore.Name = "lblTextScore";
+            this.lblTextScore.Size = new System.Drawing.Size(38, 13);
+            this.lblTextScore.TabIndex = 3;
+            this.lblTextScore.Text = "Score:";
+            // 
+            // lblScore
+            // 
+            this.lblScore.AutoSize = true;
+            this.lblScore.Location = new System.Drawing.Point(473, 76);
+            this.lblScore.Name = "lblScore";
+            this.lblScore.Size = new System.Drawing.Size(0, 13);
+            this.lblScore.TabIndex = 4;
+            // 
             // frmSnake
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(542, 478);
+            this.Controls.Add(this.lblScore);
+            this.Controls.Add(this.lblTextScore);
             this.Controls.Add(this.cmdReset);
             this.Controls.Add(this.cmdStart);
             this.Controls.Add(this.pbSpielfeld);
@@ -81,6 +102,7 @@
             this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pbSpielfeld)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -90,6 +112,8 @@
         private System.Windows.Forms.Button cmdStart;
         private System.Windows.Forms.Button cmdReset;
         private System.Windows.Forms.Timer timerTick;
+        private System.Windows.Forms.Label lblTextScore;
+        private System.Windows.Forms.Label lblScore;
     }
 }
 

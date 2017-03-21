@@ -12,28 +12,22 @@ namespace WinSnake
 {
     public partial class frmSnake : Form
     {
-        Spiel sp;
-        Gitter git;
+        
         Update up;
-        int intKastenX;
-        int intKastenY;
         int intBoxSize = 15;
+        int intAnfangX = 16;
+        int intAnfangY = 15;
+        int intSchlangeLaenge = 1;
         int intTmerCounter;
         int intRichtung;
-        int intAnfangX=16;
-        int intAnfangY=15;
-        int intEndeX;
-        int intEndeY;
         int intX, intY;
+        int score=0;
 
         public frmSnake()
         {
             InitializeComponent();
-            sp = new Spiel();
-            git = new Gitter();
             up = new Update();
             pbSpielfeld.BackColor = Color.White;
-           
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -44,60 +38,65 @@ namespace WinSnake
         private void cmdStart_Click(object sender, EventArgs e)
         {
             timerTick.Enabled = true;
-            
-            git.Linien(pbSpielfeld);
-
+            up.UpdateEssen(pbSpielfeld,intBoxSize);
+            lblScore.Text = Convert.ToString(score);
+            cmdStart.Enabled = false;
         }
 
         private void pbSpielfeld_Click(object sender, EventArgs e)
         {
-
-            sp.EssenGenerieren(pbSpielfeld, Brushes.Green, intBoxSize);
+            
         }
 
         private void timerTick_Tick(object sender, EventArgs e)
         {
             
-            if (intRichtung == 1) //Links
+            if (intRichtung == 1)       //Links
             {
-                git.Linien(pbSpielfeld);
-                up.UpdateAll(pbSpielfeld);
-                git.Linien(pbSpielfeld);
-                sp.Schlange(pbSpielfeld, Brushes.Pink, intX--, intY, intBoxSize);
-
+                up.UpdateAll(pbSpielfeld,intX,intY,intBoxSize);
+                up.Schlange(pbSpielfeld, intX--, intY, intBoxSize,intSchlangeLaenge);
             }
             else if (intRichtung == 2) //Rechts
             {
-                git.Linien(pbSpielfeld);
-                up.UpdateAll(pbSpielfeld);
-                git.Linien(pbSpielfeld);
-                sp.Schlange(pbSpielfeld, Brushes.Pink, intX++, intY, intBoxSize);
+                up.UpdateAll(pbSpielfeld, intX, intY, intBoxSize);
+                up.Schlange(pbSpielfeld, intX++, intY, intBoxSize,intSchlangeLaenge);
             }
             else if (intRichtung == 3) //Hoch
             {
-                git.Linien(pbSpielfeld);
-                up.UpdateAll(pbSpielfeld);
-                git.Linien(pbSpielfeld);
-                sp.Schlange(pbSpielfeld, Brushes.Pink, intX, intY --, intBoxSize);
+                up.UpdateAll(pbSpielfeld, intX, intY, intBoxSize);
+                up.Schlange(pbSpielfeld, intX, intY --, intBoxSize,intSchlangeLaenge);
             }
             else if (intRichtung == 4) //Runter
             {
-                git.Linien(pbSpielfeld);
-                up.UpdateAll(pbSpielfeld);
-                git.Linien(pbSpielfeld);
-                sp.Schlange(pbSpielfeld, Brushes.Pink, intX, intY ++, intBoxSize);
+                up.UpdateAll(pbSpielfeld, intX, intY, intBoxSize);
+                up.Schlange(pbSpielfeld, intX, intY ++, intBoxSize,intSchlangeLaenge);
             }
             else
             {
-                git.Linien(pbSpielfeld);
-                up.UpdateAll(pbSpielfeld);
-                git.Linien(pbSpielfeld);
-                sp.Schlange(pbSpielfeld, Brushes.Pink, intAnfangX, intAnfangY, intBoxSize);
+                up.UpdateAll(pbSpielfeld, intX, intY, intBoxSize);
                 intX = intAnfangX;
                 intY = intAnfangY;
             } 
+
+            if(up.intEssenX==intX && up.intEssenY == intY) //Schlange isst Essen
+            {
+                score = score + 100;
+                lblScore.Text = Convert.ToString(score);
+                intSchlangeLaenge++;
+                up.UpdateEssen(pbSpielfeld, intBoxSize);
+            }
+
+            if (intX < 0 || intX > 30 || intY < 0 || intY > 30)
+            {
+                timerTick.Enabled = false;
+                pbSpielfeld.Enabled = false;
+                MessageBox.Show("Sie haben verloren!");
+                
+            }
+
             intTmerCounter++;
         }
+
 
         protected override bool ProcessDialogKey(Keys keyData)
         {
@@ -126,24 +125,6 @@ namespace WinSnake
             return base.ProcessDialogKey(keyData);
         }
 
-        /*private void frmSnake_KeyDown(object sender, KeyEventArgs e)
-        {
-            switch (e.KeyCode)
-            {
-                case Keys.Left:
-                    intRichtung = 1;
-                    break;
-                case Keys.Right:
-                    intRichtung = 2;
-                    break;
-                case Keys.Up:
-                    intRichtung = 3;
-                    break;
-                case Keys.Down:
-                    intRichtung = 4;
-                    break;
-                default:
-                    break;
-            }*/
+       
         }
     }
