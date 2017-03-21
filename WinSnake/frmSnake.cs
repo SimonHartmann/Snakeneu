@@ -14,6 +14,7 @@ namespace WinSnake
     {
         Spiel sp;
         Gitter git;
+        Update up;
         //int intKastenX;
         //int intKastenY;
         int intBoxSize = 15;
@@ -30,6 +31,8 @@ namespace WinSnake
             InitializeComponent();
             sp = new Spiel();
             git = new Gitter();
+            up = new Update();
+            pbSpielfeld.BackColor = Color.White;
            
         }
 
@@ -57,23 +60,39 @@ namespace WinSnake
             
             if (intRichtung == 1) //Links
             {
+                git.Linien(pbSpielfeld);
+                up.UpdateAll(pbSpielfeld);
+                git.Linien(pbSpielfeld);
                 sp.Schlange(pbSpielfeld, Brushes.Pink, intX--, intY, intBoxSize);
+
             }
             else if (intRichtung == 2) //Rechts
             {
+                git.Linien(pbSpielfeld);
+                up.UpdateAll(pbSpielfeld);
+                git.Linien(pbSpielfeld);
                 sp.Schlange(pbSpielfeld, Brushes.Pink, intX++, intY, intBoxSize);
             }
             else if (intRichtung == 3) //Hoch
             {
+                git.Linien(pbSpielfeld);
+                up.UpdateAll(pbSpielfeld);
+                git.Linien(pbSpielfeld);
                 sp.Schlange(pbSpielfeld, Brushes.Pink, intX, intY --, intBoxSize);
             }
             else if (intRichtung == 4) //Runter
             {
+                git.Linien(pbSpielfeld);
+                up.UpdateAll(pbSpielfeld);
+                git.Linien(pbSpielfeld);
                 sp.Schlange(pbSpielfeld, Brushes.Pink, intX, intY ++, intBoxSize);
             }
             else
             {
-               sp.Schlange(pbSpielfeld, Brushes.Pink, intAnfangX, intAnfangY, intBoxSize);
+                git.Linien(pbSpielfeld);
+                up.UpdateAll(pbSpielfeld);
+                git.Linien(pbSpielfeld);
+                sp.Schlange(pbSpielfeld, Brushes.Pink, intAnfangX, intAnfangY, intBoxSize);
                 intX = intAnfangX;
                 intY = intAnfangY;
             } 
