@@ -15,7 +15,7 @@ namespace WinSnake
         Spiel sp;
         Gitter git;
         Update up;
-        //int intKastenX;
+        int intKastenX;
         //int intKastenY;
         int intBoxSize = 15;
         int intTmerCounter;
