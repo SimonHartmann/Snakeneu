@@ -16,7 +16,7 @@ namespace WinSnake
         Gitter git;
         Update up;
         int intKastenX;
-        //int intKastenY;
+        int intKastenY;
         int intBoxSize = 15;
         int intTmerCounter;
         int intRichtung;
