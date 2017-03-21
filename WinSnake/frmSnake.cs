@@ -19,9 +19,8 @@ namespace WinSnake
         int intRichtung;
         int intAnfangX=16;
         int intAnfangY=15;
-        int intEndeX;
-        int intEndeY;
         int intX, intY;
+        int SchlangenLaenge = 1;
 
         public frmSnake()
         {
@@ -39,8 +38,9 @@ namespace WinSnake
 
         private void cmdStart_Click(object sender, EventArgs e)
         {
+           // sp.Schlange(pbSpielfeld, intAnfangX, intAnfangY, intBoxSize);
             timerTick.Enabled = true;
-            
+            intRichtung = 1;
             git.Linien(pbSpielfeld);
 
         }
@@ -53,26 +53,30 @@ namespace WinSnake
 
         private void timerTick_Tick(object sender, EventArgs e)
         {
-            
+
             if (intRichtung == 1) //Links
             {
-                sp.Schlange(pbSpielfeld, Brushes.Pink, intX--, intY, intBoxSize);
+            
+               sp.Schlange(pbSpielfeld, intX, intY, intBoxSize);
             }
             else if (intRichtung == 2) //Rechts
             {
-                sp.Schlange(pbSpielfeld, Brushes.Pink, intX++, intY, intBoxSize);
+                sp.Schlange(pbSpielfeld, intX++, intY, intBoxSize);
             }
             else if (intRichtung == 3) //Hoch
             {
-                sp.Schlange(pbSpielfeld, Brushes.Pink, intX, intY --, intBoxSize);
+                sp.Schlange(pbSpielfeld, intX, intY --, intBoxSize);
             }
             else if (intRichtung == 4) //Runter
             {
-                sp.Schlange(pbSpielfeld, Brushes.Pink, intX, intY ++, intBoxSize);
+                
+                sp.Schlange(pbSpielfeld, intX, intY ++, intBoxSize);
+
+
             }
             else
             {
-               sp.Schlange(pbSpielfeld, Brushes.Pink, intAnfangX, intAnfangY, intBoxSize);
+               sp.Schlange(pbSpielfeld, intAnfangX, intAnfangY, intBoxSize);
                 intX = intAnfangX;
                 intY = intAnfangY;
             } 
