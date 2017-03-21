@@ -41,7 +41,7 @@ namespace WinSnake
         private void cmdStart_Click(object sender, EventArgs e)
         {
             timerTick.Enabled = true;
-            
+            sp.EssenGenerieren(pbSpielfeld, Brushes.Green, intBoxSize);
             git.Linien(pbSpielfeld);
 
         }
@@ -49,7 +49,6 @@ namespace WinSnake
         private void pbSpielfeld_Click(object sender, EventArgs e)
         {
 
-            sp.EssenGenerieren(pbSpielfeld, Brushes.Green, intBoxSize);
         }
 
         private void timerTick_Tick(object sender, EventArgs e)
@@ -65,18 +64,24 @@ namespace WinSnake
             }
             else if (intRichtung == 3) //Hoch
             {
-                sp.Schlange(pbSpielfeld, Brushes.Pink, intX, intY --, intBoxSize);
+                sp.Schlange(pbSpielfeld, Brushes.Pink, intX, intY--, intBoxSize);
             }
             else if (intRichtung == 4) //Runter
             {
-                sp.Schlange(pbSpielfeld, Brushes.Pink, intX, intY ++, intBoxSize);
+
+                sp.Schlange(pbSpielfeld, Brushes.Pink, intX, intY++, intBoxSize);
             }
             else
             {
-               sp.Schlange(pbSpielfeld, Brushes.Pink, intAnfangX, intAnfangY, intBoxSize);
+                sp.Schlange(pbSpielfeld, Brushes.Pink, intAnfangX, intAnfangY, intBoxSize);
                 intX = intAnfangX;
                 intY = intAnfangY;
-            } 
+            }
+
+            if (intX == sp.intEssenX && intY == sp.intEssenY)
+            {
+                sp.EssenGenerieren(pbSpielfeld, Brushes.Green, intBoxSize);
+            }
             intTmerCounter++;
         }
 
